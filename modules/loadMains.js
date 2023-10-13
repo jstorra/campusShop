@@ -1,4 +1,3 @@
-import { eventSidebar } from "./loadSidebar.js"
 import { loadCars } from "./loadCarritos.js"
 import button from "./btnAction.js"
 import abrigo from "../storage/abrigos.js"
@@ -60,7 +59,6 @@ const todosMain = async (content) => {
         </div>
     </main>
     `)
-    eventSidebar()
     button.btnGuardar(carrito)
 }
 
@@ -92,7 +90,6 @@ const abrigosMain = async (content) => {
         </div>
     </main>
     `)
-    eventSidebar()
     button.btnGuardar(carrito)
 }
 
