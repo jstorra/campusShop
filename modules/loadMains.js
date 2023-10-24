@@ -63,7 +63,6 @@ const todosMain = async (content) => {
 }
 
 const abrigosMain = async (content) => {
-    const carritos = await carrito.getAll()
     const abrigos = await abrigo.getAll()
     const cardsAbrigos = abrigos.map(abrigo => `
         <div class="card">
@@ -158,7 +157,7 @@ const carritosMain = async (content) => {
     const camisetas = await camiseta.getAll()
     const pantalones = await pantalon.getAll()
     const carritos = await carrito.getAll()
-    let {total, cardsCarritos} = loadCars({carritos, abrigos, camisetas, pantalones})
+    let {total, cardsCarritos} = loadCars({ carritos, abrigo: abrigos, camiseta: camisetas, pantalon: pantalones })
 
     if (carritos.length > 0){
         content.insertAdjacentHTML("beforeend", `
@@ -186,7 +185,7 @@ const carritosMain = async (content) => {
             </div>
         </main>
         `)
-        button.btnEliminar({carrito, abrigo, camiseta, pantalon})
+        button.btnEliminar(carrito)
         button.btnEliminarAll({carrito, carritos})
         button.btnGuardar(carrito)
     } else {

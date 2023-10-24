@@ -151,6 +151,14 @@ li {
 #sidebar.hide .divider {
     text-align: center;
 }
+.car-number {
+    flex: 1;
+    margin-left: 40px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: var(--green);
+    color: var(--grey);
+}
 /* SIDEBAR */
 
 /* CONTENT */
@@ -189,7 +197,6 @@ main {
     width: 100%;
     padding: 24px 20px 20px 20px;
     height: calc(100vh - 64px);
-    overflow-y: scroll;
     display: grid;
     grid-template-rows: auto auto 1fr;
 }
@@ -217,9 +224,9 @@ main .breadcrumbs li.divider {
 main .info-data {
     margin-top: 36px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     width: 100%;
-    min-width: 270px;
+    min-width: 220px;
     padding: 20px;
     gap: 20px;
     border-radius: 10px;
@@ -227,7 +234,9 @@ main .info-data {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
 }
-
+main .info-data::-webkit-scrollbar {
+    display: none;
+}
 main .info-data .card {
     width: 100%;
     max-height: 400px;
@@ -247,65 +256,68 @@ main .info-data .card .info {
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 10px;
 }
 main .info-data .card .info p {
     margin-bottom: 5px;
 }
-
 main .info-data-carritos {
     margin-top: 36px;
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
 }
-
 main .info-data-carritos .card-carrito {
     display: flex;
     justify-content: space-between;
+    height: 100%;
     align-items: center;
     min-height: 200px;
+    max-height: 600px;
     padding: 20px;
     width: 100%;
 }
-
-main .info-data-carritos .card-carrito img {
+.wraper {
+    flex: 1;
     height: 100%;
-    max-width: 20%;
-}
-
-main .info-data-carritos .card-carrito div {
-    height: 100%;
-    width: calc(100% / 4);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    align-items: center;
     justify-content: center;
     text-align: center;
 }
-
+.wraper div {
+    display: flex;
+    flex-direction: column;
+}
+main .info-data-carritos .card-carrito img {
+    height: 100%;
+    max-width: 20%;
+    min-width: 134px;
+    min-height: 160px;
+}
 main .info-data-carritos .card-carrito .precio {
     color: var(--green);
 }
-
 main .info-data-carritos .card-carrito .btnEliminar {
     border-radius: 10px;
     border: none;
+    font-weight: bold;
     background-color: rgb(240, 60, 60);
     cursor: pointer;
     padding: 10px;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
 }
-
 .btnAgregar {
     padding: 10px;
+    font-weight: bold;
     border-radius: 8px;
     background-color: var(--green);
     border: none;
     cursor: pointer;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
 }
-
 .acciones-carritos {
     width: 100%;
     display: flex;
@@ -320,18 +332,21 @@ main .info-data-carritos .card-carrito .btnEliminar {
     display: flex;
     justify-content: space-between;
 }
-.info-total .total{
+.info-total .total {
     color: green;
 }
 .buynow {
     padding: 5px;
+    flex: 1;
+    margin-left: 5vw;
     border-radius: 10px;
     background-color: var(--green);
     border: none;
     cursor: pointer;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 1rem;
 }
-
 .btnEliminarAll {
     margin-top: 10px;
     width: 30%;
@@ -340,4 +355,48 @@ main .info-data-carritos .card-carrito .btnEliminar {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
 }
+
+/* MEDIA QUERIES */
+@media screen and (width <= 1330px) {
+    main .info-data-carritos .card-carrito {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+    }
+    main .info-data-carritos .card-carrito img {
+        height: auto;
+    }
+    .wraper {
+        width: 100%;
+        height: 200px;
+    }
+}
+@media screen and (width <= 890px) {
+    main .info-data-carritos .card-carrito {
+        height: 700px;
+    }
+    .wraper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+    }
+    .acciones-carritos {
+        flex-direction: column-reverse;
+    }
+    .info-total {
+        width: 100%;
+    }
+    .buynow {
+        font-size: 0.8rem;
+    }
+    .btnEliminarAll {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+}
+/* MEDIA QUERIES */

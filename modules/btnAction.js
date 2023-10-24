@@ -34,24 +34,21 @@ const btnGuardar = (carrito) => {
     })
 }
 
-const btnEliminar = ({carrito, abrigo, camiseta, pantalon}) => {
+const btnEliminar = (carrito) => {
     const botones = document.querySelectorAll(".btnEliminar")
     botones.forEach(btn => {
         if (btn.dataset.tipo === "abrigo"){
             btn.addEventListener("click", () => {
-                abrigo.deleteOne(Number(btn.dataset.id))
                 carrito.deleteOne(Number(btn.dataset.car))
                 alert("!! Se ha eliminado el abrigo !!")
             })
         } else if (btn.dataset.tipo === "camiseta"){
             btn.addEventListener("click", () => {
-                camiseta.deleteOne(Number(btn.dataset.id))
                 carrito.deleteOne(Number(btn.dataset.car))
                 alert("!! Se ha eliminado la camiseta !!")
             })
         } else if (btn.dataset.tipo === "pantalon"){
             btn.addEventListener("click", () => {
-                pantalon.deleteOne(Number(btn.dataset.id))
                 carrito.deleteOne(Number(btn.dataset.car))
                 alert("!! Se ha eliminado el pantalon !!")
             })
@@ -61,11 +58,7 @@ const btnEliminar = ({carrito, abrigo, camiseta, pantalon}) => {
 
 const btnEliminarAll = ({ carrito, carritos }) => {
     const boton = document.querySelector(".btnEliminarAll")
-    const botones = document.querySelectorAll(".btnEliminar")
     boton.addEventListener("click", () => {
-        botones.forEach(btn => {
-            btn.click()
-        })
         carritos.forEach(car => {
             carrito.deleteOne(car.id)
         })

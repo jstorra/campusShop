@@ -1,91 +1,48 @@
-export const loadCars = ({carritos, abrigos, camisetas, pantalones}) => {
+export const loadCars = ({carritos, abrigo, camiseta, pantalon}) => {
     let cardsCarritos = []
     let total = 0
+    let productos = {
+        abrigo,
+        camiseta,
+        pantalon
+    }
     carritos.forEach(carrito => {
-        if ("abrigoId" in carrito){
-            for (let i of abrigos){
-                if (i.id === carrito.abrigoId){
-                    cardsCarritos.push(`
-                    <div class="card card-carrito">
-                        <img src="${i.imagen}">
-                        <div>
-                            <p>${i.nombre}</p>
-                            <p>$${i.precio}</p>
-                        </div>
-                        <div>
-                            <p>Cantidad</p>
-                            <p>${carrito.cantidad}</p>
-                        </div>
-                        <div>
-                            <p>Precio</p>
-                            <p>${i.precio}</p>
-                        </div>
-                        <div>
-                            <p>Subtotal</p>
-                            <p class="precio">$${i.precio * carrito.cantidad}</p>
-                        </div>
-                        <button class="btnEliminar" data-tipo="abrigo" data-id="${i.id}" data-car="${carrito.id}">Eliminar</button>
-                    </div>`)
-                    total += i.precio * carrito.cantidad
-                    break;
+        for (let key in carrito){
+            let encontrado_key;
+            if (key.includes("Id")){
+                encontrado_key = true;
+                for (let i of productos[key.split("Id")[0]]){
+                    let encontrado_producto;
+                    if (i.id === carrito[key]){
+                        encontrado_producto = true
+                        cardsCarritos.push(`
+                        <div class="card card-carrito">
+                            <img src="${i.imagen}">
+                            <div>
+                                <p>${i.nombre}</p>
+                                <p>$${i.precio}</p>
+                            </div>
+                            <div>
+                                <p>Cantidad</p>
+                                <p>${carrito.cantidad}</p>
+                            </div>
+                            <div>
+                                <p>Precio</p>
+                                <p>${i.precio}</p>
+                            </div>
+                            <div>
+                                <p>Subtotal</p>
+                                <p class="precio">$${i.precio * carrito.cantidad}</p>
+                            </div>
+                            <button class="btnEliminar" data-tipo="${key.split("Id")[0]}" data-id="${i.id}" data-car="${carrito.id}">Eliminar</button>
+                        </div>`)
+                        total += i.precio * carrito.cantidad
+                        break;
+                    }
+                    if (encontrado_producto) break;
                 }
             }
-        } else if ("camisetaId" in carrito){
-            for (let i of camisetas){
-                if (i.id === carrito.camisetaId){
-                    cardsCarritos.push(`
-                    <div class="card card-carrito">
-                        <img src="${i.imagen}">
-                        <div>
-                            <p>${i.nombre}</p>
-                            <p>$${i.precio}</p>
-                        </div>
-                        <div>
-                            <p>Cantidad</p>
-                            <p>${carrito.cantidad}</p>
-                        </div>
-                        <div>
-                            <p>Precio</p>
-                            <p>${i.precio}</p>
-                        </div>
-                        <div>
-                            <p>Subtotal</p>
-                            <p class="precio">$${i.precio * carrito.cantidad}</p>
-                        </div>
-                        <button class="btnEliminar" data-tipo="camiseta" data-id="${i.id}" data-car="${carrito.id}">Eliminar</button>
-                    </div>`)
-                    total += i.precio * carrito.cantidad
-                    break;
-                }
-            }
-        } else if ("pantalonId" in carrito){
-            for (let i of pantalones){
-                if (i.id === carrito.pantalonId){
-                    cardsCarritos.push(`
-                    <div class="card card-carrito">
-                        <img src="${i.imagen}">
-                        <div>
-                            <p>${i.nombre}</p>
-                            <p>$${i.precio}</p>
-                        </div>
-                        <div>
-                            <p>Cantidad</p>
-                            <p>${carrito.cantidad}</p>
-                        </div>
-                        <div>
-                            <p>Precio</p>
-                            <p>${i.precio}</p>
-                        </div>
-                        <div>
-                            <p>Subtotal</p>
-                            <p class="precio">$${i.precio * carrito.cantidad}</p>
-                        </div>
-                        <button class="btnEliminar" data-tipo="pantalon" data-id="${i.id}" data-car="${carrito.id}">Eliminar</button>
-                    </div>`)
-                    total += i.precio * carrito.cantidad
-                    break;
-                }
-            }
+            if (encontrado_key) break;
         }
     })
     cardsCarritos = cardsCarritos.join("")

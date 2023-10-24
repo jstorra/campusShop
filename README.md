@@ -1,6 +1,6 @@
 # CampusShop E-commerce
 
-Este prpoyecto se basa en una aplicación E-commerce
+Este proyecto esta basado en una aplicación E-commerce, simulando la funcion de agregar los productos al carrito, mostrar el valor correspondiente de cada producto por su cantidad y el calculo total de toda la compra.
 
 ## Secciones
 
@@ -42,7 +42,7 @@ La aplicación permite visualizar:
 
 ## Como funciona
 
-En la pagina principal se encontraran todos los productos registrados y podras agregar al carrito, ademas existen otra 4 paginas dentro de la aplicación para ver los abrigos, camisetas, pantalones y todos los peedidos guardados hasta el momento.
+En la pagina principal se encontraran todos los productos registrados y podras agregar al carrito, ademas existen otras 4 paginas dentro de la aplicación para ver los abrigos, camisetas, pantalones y una ultima pagina del carrito de compras donde podras ver todos los pedidos guardados hasta el momento y la suma total a pagar.
 
 ## Uso App
 
